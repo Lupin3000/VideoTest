@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Tutorial (SimpleVideo)</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
+  <link rel="stylesheet" href="//cdn.rawgit.com/necolas/normalize.css/master/normalize.css">
+  <link rel="stylesheet" href="//cdn.rawgit.com/milligram/milligram/master/dist/milligram.min.css">
+</head>
+
+<body>
+  <div class="container">
+    <article>
+      <header>
+        <h1>Tutorial: SimpleVideo</h1>
+      </header>
+      <nav>
+        <a href="index.html" target="_self" class="button">Home</a>
+        <a href="simplevideo.html" target="_self" class="button button-outline">SimpleVideo</a>
+        <a href="directstream.html" target="_self" class="button">DirectStream</a>
+        <a href="livestream.html" target="_self" class="button">LiveStream</a>
+      </nav>
+      <section>
+        <h2>Video</h2>
+        <blockquote>
+          <p>Files <em>demo_poster.png</em> and <em>demo_scaled.mp4</em> are stored on server and given as HTML source. Look <a href="index.html" target="_self">here</a> for help.</p>
+        </blockquote>
+        <video width="320" height="240" controls poster="http://localhost:8080/demo_poster.png">
+          <source src="http://localhost:8080/demo_scaled.mp4" type="video/mp4">
+        </video>
+      </section>
+    </article>
+  </div>
+</body>
+
+</html>

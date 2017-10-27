@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Tutorial (Index)</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
+  <link rel="stylesheet" href="//cdn.rawgit.com/necolas/normalize.css/master/normalize.css">
+  <link rel="stylesheet" href="//cdn.rawgit.com/milligram/milligram/master/dist/milligram.min.css">
+</head>
+
+<body>
+  <div class="container">
+    <article>
+      <header>
+        <h1>Tutorial: Index</h1>
+      </header>
+      <nav>
+        <a href="index.html" target="_self" class="button button-outline">Home</a>
+        <a href="simplevideo.html" target="_self" class="button">SimpleVideo</a>
+        <a href="directstream.html" target="_self" class="button">DirectStream</a>
+        <a href="livestream.html" target="_self" class="button">LiveStream</a>
+      </nav>
+      <section>
+        <h2>Help</h2>
+        <h3>How-to create and upload a new simple video</h3>
+        <p>Tutorial: <a href="http://osxdaily.com/2010/11/16/screen-recorder-mac/" target="_blank">How to Use the Screen Recorder on a Mac</a>
+        <pre><code>
+        # open Quicktime Player
+        $ open -a &quot;QuickTime Player&quot;
+        <br>
+        # press Control-Command-N, start record (<em>approximately 5 min</em>)
+        # save record into project root folder as &quot;movie.mov&quot; (<em>~/Projects/VideoTest/movie.mov</em>)
+        <br>
+        # convert mov into mp4
+        $ ffmpeg -i movie.mov -vcodec copy -acodec copy demo.mp4
+        <br>
+        # resize mp4 to 320x240
+        $ ffmpeg -i demo.mp4 -vf scale=320:240 ./src/demo_scaled.mp4
+        <br>
+        # create poster from mp4
+        $ ffmpeg -i ./src/demo_scaled.mp4 -ss 00:00:30 -vframes 1 ./src/demo_poster.png
+        <br>
+        # create m3u8/ts files from mp4
+        $ ffmpeg -i demo.mp4 -b:v 1M -g 60 -hls_time 2 -hls_list_size 0 -hls_segment_size 500000 ./src/output.m3u8
+        <br>
+        # run specific SHELL provisioner
+        $ vagrant provision --provision-with video
+        </code></pre>
+      </section>
+      <section>
+        <h3>How-to livestream video file</h3>
+        <pre><code>
+        # stream file via ffmpeg
+        $ ffmpeg -re -i demo.mp4 -vcodec libx264 -vprofile baseline -g 30 -acodec aac -strict -2 -f flv rtmp://localhost/show/stream
+        </code></pre>
+      </section>
+      <section>
+        <h3>How-to livestream FaceTime HD Camera</h3>
+        <pre><code>
+        # list all devices
+        $ ffmpeg -f avfoundation -list_devices true -i &quot;&quot;
+        <br>
+        # stream to rtmp
+        $ ffmpeg -f avfoundation -framerate 30 -i &quot;0:0&quot; -pix_fmt yuv420p -vcodec libx264 -vprofile baseline -g 30 -acodec libmp3lame -f flv rtmp://localhost/show/stream
+        </code></pre>
+      </section>
+    </article>
+  </div>
+</body>
+
+</html>
