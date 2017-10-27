@@ -1,6 +1,6 @@
 # VideoTest
 
-This repository includes all files for the [tutorial](http://softwaretester.info/create-a-simpl…st-environment/ ‎E) on [softwaretester.info](https://softwaretester.info).
+This repository includes all files for the [tutorial](http://softwaretester.info/create-a-simple-video-test-environment/) on [softwaretester.info](https://softwaretester.info).
 
 ## Create project
 
